@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Oliveira - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #e6e6e6;
+            --text-color: #1a1a1a;
+            --accent-color: #555;
+            --noise-opacity: 0.09;
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-color: #0a0a0a;
+            --text-color: #f0f0f0;
+            --accent-color: #aaa;
+            --noise-opacity: 0.12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- Canvas de Ruído (Noise) --- */
+        #noise-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--noise-opacity);
+        }
+
+        /* --- Layout Grid --- */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Sidebar Fixa --- */
+        .sidebar {
+            width: 250px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            border-right: 1px solid transparent; /* Espaço reservado */
+        }
+
+        .brand h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+            line-height: 1;
+            margin-bottom: 5px;
+            letter-spacing: -0.02em;
+        }
+
+        .brand span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            margin-top: 60px;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 15px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            margin-right: 10px;
+            opacity: 0;
+            transform: scale(0);
+            transition: var(--transition);
+        }
+
+        .nav-menu a.active::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- Switch de Tema Vertical --- */
+        .theme-switch-wrapper {
+            margin-top: auto;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .theme-switch {
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .checkbox {
+            display: none;
+        }
+
+        .switch-indicator {
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--text-color);
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .switch-indicator {
+            background: var(--text-color);
+        }
+
+        /* --- Conteúdo Principal --- */
+        .content {
+            margin-left: 250px; /* Largura da sidebar */
+            flex: 1;
+            padding: 40px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Estilos da Home --- */
+        .home-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            line-height: 1.2;
+            max-width: 600px;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .home-corner-text {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            text-align: right;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        /* --- Estilos de Projetos --- */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .project-item {
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .project-item:hover {
+            opacity: 0.7;
+        }
+
+        .project-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--accent-color);
+        }
+
+        /* --- Estilos de Info --- */
+        .info-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .info-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* --- Estilos de Contato --- */
+        .contact-links a {
+            display: block;
+            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-color);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        .contact-links a:hover {
+            transform: translateX(20px);
+            font-style: italic;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            .theme-switch-wrapper {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 20px;
+                writing-mode: horizontal-tb;
+                transform: none;
+            }
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .home-quote {
+                font-size: 2rem;
+            }
+            .info-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="noise-canvas"></canvas>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="brand">
+                <h1>Paulo Oliveira</h1> <span>Desenvolvedor FullStack</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('inicio', this)" class="active">Início</a></li>
+                <li><a href="#" onclick="showSection('projetos', this)">Projetos</a></li>
+                <li><a href="#" onclick="showSection('info', this)">Info</a></li>
+                <li><a href="#" onclick="showSection('contato', this)">Contato</a></li>
+            </ul>
+
+            <div class="theme-switch-wrapper">
+                <div class="theme-switch" id="theme-toggle">
+                    <div class="switch-indicator"></div>
+                    <span>Light / Dark</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="content">
+            
+            <div id="inicio" class="section active">
+                <div class="home-quote">
+                    "Software é uma mistura de arte e engenharia. A simplicidade é o grau máximo de sofisticação."
+                </div>
+                            </div>
+
+            <div id="projetos" class="section">
+                <div class="project-list">
+                    <div class="project-item">
+                        <span class="project-name">Treinei</span>
+                        <span class="project-meta">React / Node / 2024</span>
+                    </div>
+                    <div class="project-item">
+                        <span class="project-name">Abapfy</span>
+                        <span class="project-meta">Vue / Firebase / 2025</span>
+                    </div>
+                    <div class="project-item">
+                        <span class="project-name">FocusShield</span>
+                        <span class="project-meta">C# / MySQL / 2024</span>
+                    </div>
+                    <div class="project-item">
+                        <span class="project-name">Portfolio</span>
+                        <span class="project-meta">HTML / CSS / JS / 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="info" class="section">
+                <div class="info-content">
+                    <div>
+                        <h2 style="font-family: 'Cormorant Garamond'; font-size: 2rem; margin-bottom: 20px;">Sobre</h2>
+                        <p class="info-text">
+                            Sou um desenvolvedor apaixonado por interfaces limpas e código performático. 
+                            Com 5 anos de experiência, transito entre o Front-end criativo e o Back-end robusto.
+                            Busco sempre unir a estética japonesa de design com a funcionalidade ocidental.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="info-text" style="color: var(--accent-color);">
+                            Stack:<br>
+                            JavaScript (ES6+), TypeScript, React, Next.js<br>
+                            Node.js, PostgreSQL, AWS<br>
+                            UI/UX Design, Figma
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contato" class="section">
+                <div class="contact-links">
+                    <a href="#">LinkedIn ↗</a>
+                    <a href="#">GitHub ↗</a>
+                    <a href="#">Instagram ↗</a>
+                    <a href="mailto:paulo@email.com">Email ↗</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- 1. Script de Navegação ---
+        function showSection(sectionId, element) {
+            // Esconde todas as seções
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            // Mostra a desejada
+            document.getElementById(sectionId).classList.add('active');
+
+            // Atualiza menu ativo
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // --- 2. Script Dark Mode ---
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        toggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        // --- 3. Script de Noise (Granulação) ---
+        const canvas = document.getElementById('noise-canvas');
+        const ctx = canvas.getContext('2d');
+
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function noise() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const idata = ctx.createImageData(w, h);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+
+            for (let i = 0; i < len; i++) {
+                if (Math.random() < 0.5) {
+                    // Cor preta com alpha aleatório para criar o grão
+                    buffer32[i] = 0xff000000 | (Math.random() * 50); // Ajuste de intensidade
+                }
+            }
+            ctx.putImageData(idata, 0, 0);
+            requestAnimationFrame(noise);
+        }
+
+        // Inicia animação de ruído
+        noise();
+    </script>
+</body>
+</html>
