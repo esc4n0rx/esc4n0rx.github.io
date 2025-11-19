@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paulo Oliveira - Portfolio</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -17,8 +17,6 @@
             --noise-opacity: 0.09;
             --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
-        /* Dark Mode Variables */
         [data-theme="dark"] {
             --bg-color: #0a0a0a;
             --text-color: #f0f0f0;
@@ -42,7 +40,6 @@
             width: 100vw;
         }
 
-        /* --- Canvas de Ruído (Noise) --- */
         #noise-canvas {
             position: fixed;
             top: 0;
@@ -54,7 +51,6 @@
             opacity: var(--noise-opacity);
         }
 
-        /* --- Layout Grid --- */
         .container {
             display: flex;
             min-height: 100vh;
@@ -62,7 +58,6 @@
             z-index: 1;
         }
 
-        /* --- Sidebar Fixa --- */
         .sidebar {
             width: 250px;
             padding: 40px;
@@ -129,7 +124,6 @@
             transform: scale(1);
         }
 
-        /* --- Switch de Tema Vertical --- */
         .theme-switch-wrapper {
             margin-top: auto;
             position: absolute;
@@ -168,9 +162,8 @@
             background: var(--text-color);
         }
 
-        /* --- Conteúdo Principal --- */
         .content {
-            margin-left: 250px; /* Largura da sidebar */
+            margin-left: 250px;
             flex: 1;
             padding: 40px 80px;
             display: flex;
@@ -193,7 +186,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Estilos da Home --- */
         .home-quote {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
@@ -212,7 +204,6 @@
             line-height: 1.6;
         }
 
-        /* --- Estilos de Projetos --- */
         .project-list {
             display: flex;
             flex-direction: column;
@@ -244,7 +235,6 @@
             color: var(--accent-color);
         }
 
-        /* --- Estilos de Info --- */
         .info-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -255,7 +245,6 @@
             line-height: 1.8;
         }
 
-        /* --- Estilos de Contato --- */
         .contact-links a {
             display: block;
             font-size: 3rem;
@@ -270,7 +259,6 @@
             font-style: italic;
         }
 
-        /* --- Mobile --- */
         @media (max-width: 768px) {
             .sidebar {
                 position: relative;
@@ -359,16 +347,18 @@
                     <div>
                         <h2 style="font-family: 'Cormorant Garamond'; font-size: 2rem; margin-bottom: 20px;">Sobre</h2>
                         <p class="info-text">
-                            Sou um desenvolvedor apaixonado por interfaces limpas e código performático. 
-                            Com 5 anos de experiência, transito entre o Front-end criativo e o Back-end robusto.
-                            Busco sempre unir a estética japonesa de design com a funcionalidade ocidental.
+                            Sou formado em Análise e Desenvolvimento de Sistemas e pós-graduando em Desenvolvimento Fullstack Java, com quase 6 anos de experiência na área de tecnologia. 
+                            Atuo no desenvolvimento de aplicações e automações corporativas, com foco na melhoria contínua de processos e na eficiência operacional.
+                            Tenho experiência com Python, JavaScript (Node.js, React, Next.js), bancos de dados SQL (MySQL, PostgreSQL), Azure, além de conhecimentos em Kubernetes, LangChain e LLMs. 
+                            Já desenvolvi soluções internas de alto impacto, incluindo sistemas web personalizados e automações para SAP.
+                            Sou movido pelo aprendizado contínuo, pela colaboração em equipe e por desafios técnicos. Acredito que a tecnologia deve ser simples, inteligente e acessível — e trabalho diariamente para construir soluções com essas premissas.
                         </p>
                     </div>
                     <div>
                         <p class="info-text" style="color: var(--accent-color);">
                             Stack:<br>
-                            JavaScript (ES6+), TypeScript, React, Next.js<br>
-                            Node.js, PostgreSQL, AWS<br>
+                            JavaScript (ES6+), TypeScript,Python,Cobol,C#, React, Next.js<br>
+                            Node.js, PostgreSQL, AWS,MySQL,Redis<br>
                             UI/UX Design, Figma
                         </p>
                     </div>
@@ -377,9 +367,9 @@
 
             <div id="contato" class="section">
                 <div class="contact-links">
-                    <a href="#">LinkedIn ↗</a>
-                    <a href="#">GitHub ↗</a>
-                    <a href="#">Instagram ↗</a>
+                    <a href="https://www.linkedin.com/in/ppaulocunha/">LinkedIn ↗</a>
+                    <a href="https://github.com/esc4n0rx">GitHub ↗</a>
+                    <a href="https://www.instagram.com/pauloliverx">Instagram ↗</a>
                     <a href="mailto:paulo@email.com">Email ↗</a>
                 </div>
             </div>
@@ -450,4 +440,5 @@
         noise();
     </script>
 </body>
+
 </html>
