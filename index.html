@@ -235,6 +235,132 @@
             color: var(--accent-color);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            padding: 60px;
+            border: 1px solid var(--accent-color);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-close:hover {
+            opacity: 0.6;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            clear: both;
+        }
+
+        .modal-section {
+            margin-bottom: 40px;
+        }
+
+        .modal-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .modal-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .features-list li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .features-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stack-item {
+            padding: 15px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .stack-item-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        .stack-item-content {
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
         .info-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -243,6 +369,90 @@
         .info-text {
             font-size: 1.1rem;
             line-height: 1.8;
+        }
+
+        /* Stack Interativa - Info Section */
+        .stack-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .stack-category {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stack-category-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-color);
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stack-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--accent-color);
+            border-radius: 3px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background-color: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: tagSlideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes tagSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stack-tag:nth-child(1) { animation-delay: 0.05s; }
+        .stack-tag:nth-child(2) { animation-delay: 0.1s; }
+        .stack-tag:nth-child(3) { animation-delay: 0.15s; }
+        .stack-tag:nth-child(4) { animation-delay: 0.2s; }
+        .stack-tag:nth-child(5) { animation-delay: 0.25s; }
+
+        .stack-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            z-index: -1;
+            transition: left 0.3s ease;
+        }
+
+        .stack-tag:hover {
+            color: var(--bg-color);
+            border-color: var(--text-color);
+            transform: translateY(-3px);
+        }
+
+        .stack-tag:hover::before {
+            left: 0;
         }
 
         .contact-links a {
@@ -285,6 +495,24 @@
             .info-content {
                 grid-template-columns: 1fr;
             }
+            .modal-content {
+                padding: 40px 20px;
+                width: 95%;
+                max-height: 90vh;
+            }
+            .modal-title {
+                font-size: 2rem;
+            }
+            .stack-grid {
+                grid-template-columns: 1fr;
+            }
+            .stack-tags {
+                gap: 8px;
+            }
+            .stack-tag {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -323,22 +551,34 @@
 
             <div id="projetos" class="section">
                 <div class="project-list">
-                    <div class="project-item">
-                        <span class="project-name">Treinei</span>
-                        <span class="project-meta">React / Node / 2024</span>
+                    <div class="project-item" onclick="openProjectModal(0)">
+                        <span class="project-name">TestForge</span>
+                        <span class="project-meta">Next.js / TypeScript / React</span>
                     </div>
-                    <div class="project-item">
+                    <div class="project-item" onclick="openProjectModal(1)">
                         <span class="project-name">Abapfy</span>
-                        <span class="project-meta">Vue / Firebase / 2025</span>
+                        <span class="project-meta">Next.js / Node.js / LLMs</span>
                     </div>
-                    <div class="project-item">
-                        <span class="project-name">FocusShield</span>
-                        <span class="project-meta">C# / MySQL / 2024</span>
+                    <div class="project-item" onclick="openProjectModal(2)">
+                        <span class="project-name">Pyambi</span>
+                        <span class="project-meta">Python / Flask / WebSockets</span>
                     </div>
-                    <div class="project-item">
-                        <span class="project-name">Portfolio</span>
-                        <span class="project-meta">HTML / CSS / JS / 2025</span>
+                    <div class="project-item" onclick="openProjectModal(3)">
+                        <span class="project-name">WinP2P</span>
+                        <span class="project-meta">Python / CustomTkinter / Sockets</span>
                     </div>
+                    <div class="project-item" onclick="openProjectModal(4)">
+                        <span class="project-name">Mint</span>
+                        <span class="project-meta">Python / Interpreter / VS Code</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para projetos -->
+            <div id="project-modal" class="modal">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+                    <div id="modal-body"></div>
                 </div>
             </div>
 
@@ -355,12 +595,60 @@
                         </p>
                     </div>
                     <div>
-                        <p class="info-text" style="color: var(--accent-color);">
-                            Stack:<br>
-                            JavaScript (ES6+), TypeScript,Python,Cobol,C#, React, Next.js<br>
-                            Node.js, PostgreSQL, AWS,MySQL,Redis<br>
-                            UI/UX Design, Figma
-                        </p>
+                        <h2 style="font-family: 'Cormorant Garamond'; font-size: 2rem; margin-bottom: 20px;">Stack Tecnológico</h2>
+                        <div class="stack-section">
+                            <div class="stack-category">
+                                <div class="stack-category-title">Linguagens</div>
+                                <div class="stack-tags">
+                                    <span class="stack-tag">JavaScript (ES6+)</span>
+                                    <span class="stack-tag">TypeScript</span>
+                                    <span class="stack-tag">Python</span>
+                                    <span class="stack-tag">Cobol</span>
+                                    <span class="stack-tag">C#</span>
+                                </div>
+                            </div>
+
+                            <div class="stack-category">
+                                <div class="stack-category-title">Frontend</div>
+                                <div class="stack-tags">
+                                    <span class="stack-tag">React</span>
+                                    <span class="stack-tag">Next.js</span>
+                                    <span class="stack-tag">Tailwind CSS</span>
+                                    <span class="stack-tag">Shadcn/UI</span>
+                                </div>
+                            </div>
+
+                            <div class="stack-category">
+                                <div class="stack-category-title">Backend & Bancos</div>
+                                <div class="stack-tags">
+                                    <span class="stack-tag">Node.js</span>
+                                    <span class="stack-tag">PostgreSQL</span>
+                                    <span class="stack-tag">MySQL</span>
+                                    <span class="stack-tag">Redis</span>
+                                    <span class="stack-tag">Supabase</span>
+                                </div>
+                            </div>
+
+                            <div class="stack-category">
+                                <div class="stack-category-title">Cloud & DevOps</div>
+                                <div class="stack-tags">
+                                    <span class="stack-tag">AWS</span>
+                                    <span class="stack-tag">Azure</span>
+                                    <span class="stack-tag">Kubernetes</span>
+                                    <span class="stack-tag">Docker</span>
+                                </div>
+                            </div>
+
+                            <div class="stack-category">
+                                <div class="stack-category-title">Ferramentas & IA</div>
+                                <div class="stack-tags">
+                                    <span class="stack-tag">LangChain</span>
+                                    <span class="stack-tag">LLMs</span>
+                                    <span class="stack-tag">Figma</span>
+                                    <span class="stack-tag">UI/UX Design</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -370,7 +658,7 @@
                     <a href="https://www.linkedin.com/in/ppaulocunha/">LinkedIn ↗</a>
                     <a href="https://github.com/esc4n0rx">GitHub ↗</a>
                     <a href="https://www.instagram.com/pauloliverx">Instagram ↗</a>
-                    <a href="mailto:paulo@email.com">Email ↗</a>
+                    <a href="mailto:paulo.android99@gmail.com">Email ↗</a>
                 </div>
             </div>
 
@@ -378,6 +666,105 @@
     </div>
 
     <script>
+        // --- Dados dos Projetos ---
+        const projectsData = [
+            {
+                name: "TestForge",
+                description: "O TestForge é uma plataforma SaaS projetada para modernizar a forma como equipes de QA e desenvolvimento documentam e executam cenários de teste. O projeto substitui documentações estáticas (como arquivos Word/Excel) por fluxos visuais interativos, permitindo que os usuários criem, colaborem e exportem evidências de teste de forma dinâmica e profissional.",
+                features: [
+                    "Editor Visual de Fluxos: Criação de cenários de teste através de uma interface intuitiva de 'arrastar e conectar' etapas.",
+                    "Gestão de Workspace: Sistema robusto para gerenciamento de times, convites de membros e controle de permissões (Owner, Admin, Member).",
+                    "Execução com Evidências: Permite anexar prints e comentários em cada etapa específica do fluxo de teste durante a execução.",
+                    "Colaboração em Tempo Real: Ambiente preparado para o trabalho em equipe e feedback entre analistas e clientes.",
+                    "Sistema de Assinatura e Planos: Estrutura de planos (Start, Team, Enterprise) com limites dinâmicos de usuários e retenção de dados."
+                ],
+                stack: [
+                    { title: "Framework", content: "Next.js 15 (App Router), TypeScript" },
+                    { title: "UI/Styling", content: "Tailwind CSS, Shadcn/UI, Radix UI" },
+                    { title: "Visualização", content: "@xyflow/react (React Flow), GSAP" },
+                    { title: "Formulários", content: "React Hook Form, Zod" },
+                    { title: "Dados", content: "Recharts, Date-fns" },
+                    { title: "Backend", content: "Node.js, TypeScript, REST API" }
+                ]
+            },
+            {
+                name: "Abapfy",
+                description: "Abapfy (ABAP AI Power) – Assistente Inteligente para Desenvolvimento SAP. Uma plataforma avançada de produtividade para desenvolvedores SAP que utiliza Inteligência Artificial Generativa para automatizar tarefas complexas no ciclo de vida de desenvolvimento ABAP. O sistema integra múltiplos modelos de IA para fornecer assistência técnica precisa.",
+                features: [
+                    "Gerador de Código ABAP: Criação automática de relatórios (ALV, simples), Module Pools, Classes OO e estruturas Fiori RAP.",
+                    "Depurador e Analista de Código: Ferramenta dedicada para analisar trechos de código, identificar bugs e sugerir correções imediatas.",
+                    "Criador de Especificações Funcionais: Automação na elaboração e refinamento de documentos técnicos e funcionais.",
+                    "Chat Assistente Especializado: Interface de conversação contextualizada para resolver dúvidas técnicas de SAP.",
+                    "Gestão de Provedores de IA: Painel de configuração para alternar entre diferentes modelos (OpenAI, Gemini, Anthropic, Groq)."
+                ],
+                stack: [
+                    { title: "Frontend", content: "Next.js (App Router), TypeScript, Shadcn/UI" },
+                    { title: "Backend", content: "Node.js, Supabase, PostgreSQL" },
+                    { title: "IA", content: "GPT-4, Claude, Gemini, Llama via APIs" },
+                    { title: "Estado", content: "Zustand" },
+                    { title: "Estilo", content: "Tailwind CSS, Dark/Light Mode" },
+                    { title: "Diferenciais", content: "Engenharia de Prompt Especializada, Arquitetura Modular" }
+                ]
+            },
+            {
+                name: "Pyambi",
+                description: "O Pyambi é uma solução de software desenvolvida para criar experiências visuais imersivas através do controlo de sistemas de iluminação ambiente (Ambilight). O projeto permite a sincronização de cores entre conteúdos multimédia e fitas de LED, oferecendo uma interface de gestão simplificada e suporte para comunicação em tempo real.",
+                features: [
+                    "Controlo Ambilight Dinâmico: Algoritmos em Python para processamento e sincronização de cores de vídeo com hardware de iluminação.",
+                    "Interface de Gestão Web: Painel intuitivo para configurar parâmetros do sistema, brilho e modos de operação.",
+                    "Comunicação em Tempo Real: Implementação de WebSockets para garantir baixa latência na transmissão de comandos.",
+                    "Reprodutor Integrado: Interface dedicada para visualização e teste dos efeitos de iluminação em conjunto com conteúdo de vídeo.",
+                    "Configuração Persistente: Armazenamento de preferências do utilizador utilizando SQLite."
+                ],
+                stack: [
+                    { title: "Backend", content: "Python, Flask" },
+                    { title: "Frontend", content: "HTML5, Tailwind CSS" },
+                    { title: "Comunicação", content: "Socket.io, WebSockets" },
+                    { title: "Base de Dados", content: "SQLite" },
+                    { title: "Scripting", content: "JavaScript Vanilla" },
+                    { title: "Diferenciais", content: "Arquitetura Modular, Otimização para Hardware" }
+                ]
+            },
+            {
+                name: "WinP2P",
+                description: "O WinP2P é uma aplicação desktop de alto desempenho concebida para a partilha direta de ficheiros entre dispositivos (Peer-to-Peer). O projeto foca-se na facilidade de uso através de uma interface gráfica intuitiva, garantindo que grandes volumes de dados possam ser transferidos de forma segura e privada.",
+                features: [
+                    "Transferência P2P Direta: Arquitetura que permite a um dispositivo atuar como servidor ou cliente para enviar e receber ficheiros.",
+                    "Segurança e Encriptação: Utilização de algoritmos criptográficos para proteger a integridade e a privacidade dos dados.",
+                    "Gestão de Sessões: Sistema de geração de códigos únicos para facilitar a conexão rápida entre pares.",
+                    "Interface Multi-Janela: Experiência de utilizador completa com janelas dedicadas para configuração e monitorização.",
+                    "Sistema de Auto-Update: Mecanismo integrado para verificação e instalação automática de novas versões do software."
+                ],
+                stack: [
+                    { title: "Linguagem", content: "Python" },
+                    { title: "Interface", content: "CustomTkinter (Dark/Light Mode)" },
+                    { title: "Rede", content: "Sockets, TCP/IP" },
+                    { title: "Segurança", content: "Criptografia, Encriptação de Dados" },
+                    { title: "Build", content: "PyInstaller (.exe)" },
+                    { title: "Diferenciais", content: "Design Modular, Pipeline CI/CD com GitHub Actions" }
+                ]
+            },
+            {
+                name: "Mint",
+                description: "O Mint é uma linguagem de programação personalizada, desenhada com foco em simplicidade e robustez. O projeto engloba todo o ciclo de vida de uma linguagem, desde a análise léxica (lexing) até à execução (interpretação), incluindo uma ferramenta de análise estática (linter) e suporte oficial para VS Code.",
+                features: [
+                    "Interpretador Completo: Execução de scripts .mint com suporte para lógica condicional, operações aritméticas e manipulação de variáveis.",
+                    "Linter Integrado: Ferramenta de análise estática que identifica erros de sintaxe e inconsistências no código.",
+                    "Análise de Código Avançada: Implementação de um Lexer para tokenização e um Parser para geração de AST.",
+                    "Extensão para VS Code: Suporte nativo ao ambiente de desenvolvimento, incluindo syntax highlighting e ícones personalizados.",
+                    "Interface de Linha de Comando: Ferramenta prática para correr o interpretador ou o linter diretamente do terminal."
+                ],
+                stack: [
+                    { title: "Linguagem Core", content: "Python" },
+                    { title: "Arquitetura", content: "Lexer, Parser, Interpretador com AST" },
+                    { title: "VS Code", content: "Extensão VSIX, TextMate Grammars" },
+                    { title: "Erro Handling", content: "Sistema Customizado de Rastreio" },
+                    { title: "Tooling", content: "CLI, Linter, Debugger" },
+                    { title: "Diferenciais", content: "Ecossistema Completo, Extensibilidade" }
+                ]
+            }
+        ];
+
         // --- 1. Script de Navegação ---
         function showSection(sectionId, element) {
             // Esconde todas as seções
@@ -394,7 +781,62 @@
             element.classList.add('active');
         }
 
-        // --- 2. Script Dark Mode ---
+        // --- 2. Script de Modal de Projetos ---
+        function openProjectModal(projectIndex) {
+            const project = projectsData[projectIndex];
+            const modal = document.getElementById('project-modal');
+            const modalBody = document.getElementById('modal-body');
+
+            let stackHTML = '<div class="stack-grid">';
+            project.stack.forEach(item => {
+                stackHTML += `
+                    <div class="stack-item">
+                        <div class="stack-item-title">${item.title}</div>
+                        <div class="stack-item-content">${item.content}</div>
+                    </div>
+                `;
+            });
+            stackHTML += '</div>';
+
+            let featuresHTML = '<ul class="features-list">';
+            project.features.forEach(feature => {
+                featuresHTML += `<li>${feature}</li>`;
+            });
+            featuresHTML += '</ul>';
+
+            modalBody.innerHTML = `
+                <h2 class="modal-title">${project.name}</h2>
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p class="modal-description">${project.description}</p>
+                </div>
+                <div class="modal-section">
+                    <h3>Principais Funcionalidades</h3>
+                    ${featuresHTML}
+                </div>
+                <div class="modal-section">
+                    <h3>Stack Tecnológica</h3>
+                    ${stackHTML}
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+        }
+
+        // Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('project-modal');
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        });
+
+        // --- 3. Script Dark Mode ---
         const toggle = document.getElementById('theme-toggle');
         const body = document.body;
         
@@ -407,7 +849,7 @@
             }
         });
 
-        // --- 3. Script de Noise (Granulação) ---
+        // --- 4. Script de Noise (Granulação) ---
         const canvas = document.getElementById('noise-canvas');
         const ctx = canvas.getContext('2d');
 

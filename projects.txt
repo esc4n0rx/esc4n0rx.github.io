@@ -1,0 +1,100 @@
+TestForge—
+O TestForge é uma plataforma SaaS projetada para modernizar a forma como equipes de QA e desenvolvimento documentam e executam cenários de teste. O projeto substitui documentações estáticas (como arquivos Word/Excel) por fluxos visuais interativos, permitindo que os usuários criem, colaborem e exportem evidências de teste de forma dinâmica e profissional.
+Principais Funcionalidades:
+* Editor Visual de Fluxos: Criação de cenários de teste através de uma interface intuitiva de "arrastar e conectar" etapas.
+* Gestão de Workspace: Sistema robusto para gerenciamento de times, convites de membros e controle de permissões (Owner, Admin, Member).
+* Execução com Evidências: Permite anexar prints e comentários em cada etapa específica do fluxo de teste durante a execução.
+* Colaboração em Tempo Real: Ambiente preparado para o trabalho em equipe e feedback entre analistas e clientes.
+* Sistema de Assinatura e Planos: Estrutura de planos (Start, Team, Enterprise) com limites dinâmicos de usuários e retenção de dados.
+Stack Tecnológica (Frontend):
+* Framework Principal: Next.js 15 (App Router) com TypeScript para um código tipado e escalável.
+* Interface e UI: Tailwind CSS para estilização e Shadcn/UI (baseado em Radix UI) para componentes acessíveis e modernos.
+* Visualização de Fluxos: @xyflow/react (React Flow) para a renderização e manipulação dos diagramas de teste.
+* Animações: GSAP (GreenSock Animation Platform) para interações fluidas na interface.
+* Gerenciamento de Formulários: React Hook Form integrado com Zod para validações rigorosas de esquemas.
+* Gráficos e Dashboards: Recharts para análise visual de dados e métricas.
+* Utilitários: Lucide React (ícones), Date-fns (manipulação de datas) e Sonner (notificações push).
+Integração com Backend:
+* O frontend consome uma API REST robusta desenvolvida em Node.js com TypeScript, utilizando autenticação baseada em sessão (cookies) e seguindo regras de negócio complexas para gestão de recursos e limites de planos SaaS.
+
+
+
+
+
+Abapfy
+Abapfy (ABAP AI Power) – Assistente Inteligente para Desenvolvimento SAP
+O ABP é uma plataforma avançada de produtividade para desenvolvedores SAP que utiliza Inteligência Artificial Generativa para automatizar tarefas complexas no ciclo de vida de desenvolvimento ABAP. O sistema integra múltiplos modelos de IA para fornecer assistência técnica precisa, desde a geração de código até à análise de erros críticos.
+Principais Funcionalidades:
+* Gerador de Código ABAP: Criação automática de relatórios (ALV, simples), Module Pools, Classes OO e estruturas Fiori RAP a partir de descrições funcionais.
+* Depurador e Analista de Código: Ferramenta dedicada para analisar trechos de código, identificar bugs e sugerir correções imediatas com base em boas práticas.
+* Criador de Especificações Funcionais (EF): Automação na elaboração e refinamento de documentos técnicos e funcionais, garantindo conformidade com os requisitos do projeto.
+* Chat Assistente Especializado: Interface de conversação contextualizada para resolver dúvidas técnicas de SAP, suporte a múltiplos projetos e histórico de mensagens.
+* Gestão de Provedores de IA: Painel de configuração para alternar entre diferentes modelos (OpenAI, Gemini, Anthropic, Groq), permitindo otimizar custo e performance por tarefa.
+Stack Tecnológica (Fullstack):
+* Frontend: Next.js (App Router) com TypeScript, utilizando componentes Shadcn/UI e Radix UI para uma interface profissional e responsiva.
+* Backend: Node.js integrado com Supabase (PostgreSQL) para autenticação, gestão de perfis e armazenamento de dados.
+* Inteligência Artificial: Integração via API com múltiplos LLMs (GPT-4, Claude, Gemini, Llama) através de um gestor de provedores customizado.
+* Gestão de Estado: Utilização de Zustand para um estado global leve e eficiente.
+* Estilização: Tailwind CSS para design moderno e suporte a temas (Dark/Light mode).
+Diferenciais Técnicos:
+* Engenharia de Prompt Especializada: O projeto inclui bibliotecas de prompts altamente específicos para a sintaxe e padrões de desenvolvimento SAP (procedural e OO).
+* Arquitetura Escalável: Estrutura modular que permite a adição de novas ferramentas de IA e suporte a diferentes frameworks SAP sem impactar o núcleo do sistema.
+
+
+
+Pyambi—
+O Pyambi é uma solução de software desenvolvida para criar experiências visuais imersivas através do controlo de sistemas de iluminação ambiente (Ambilight). O projeto permite a sincronização de cores entre conteúdos multimédia e fitas de LED, oferecendo uma interface de gestão simplificada e suporte para comunicação em tempo real via WebSockets.
+Principais Funcionalidades:
+* Controlo Ambilight Dinâmico: Algoritmos em Python para processamento e sincronização de cores de vídeo com hardware de iluminação.
+* Interface de Gestão Web: Painel intuitivo para configurar parâmetros do sistema, brilho e modos de operação.
+* Comunicação em Tempo Real: Implementação de WebSockets para garantir baixa latência na transmissão de comandos e atualizações de status.
+* Reprodutor Integrado: Interface dedicada para visualização e teste dos efeitos de iluminação em conjunto com conteúdo de vídeo.
+* Configuração Persistente: Armazenamento de preferências do utilizador e configurações do sistema utilizando SQLite.
+Stack Tecnológica:
+* Backend: Desenvolvido em Python utilizando o framework Flask para a gestão de rotas e lógica de servidor.
+* Frontend: Interface construída com HTML5 e Tailwind CSS, garantindo um design responsivo e moderno.
+* Comunicação: Socket.io / WebSockets para interação bidirecional em tempo real entre o cliente e o hardware.
+* Base de Dados: SQLite para a persistência de dados de configuração e estados do dispositivo.
+* Scripting: JavaScript vanilla para manipulação do DOM, gestão de eventos do reprodutor e integração com o backend.
+Diferenciais Técnicos:
+* Arquitetura Modular: Separação clara entre a lógica de processamento de cor, rotas da aplicação e gestão de sockets.
+* Otimização para Hardware: Scripts de configuração (setup.bat) e monitorização (status.bat) desenhados para facilitar a implementação em sistemas embarcados ou servidores locais.
+
+
+
+WinP2P—
+O WinP2P é uma aplicação desktop de alto desempenho concebida para a partilha direta de ficheiros entre dispositivos (Peer-to-Peer). O projeto foca-se na facilidade de uso através de uma interface gráfica intuitiva, garantindo que grandes volumes de dados possam ser transferidos de forma segura e privada, sem a necessidade de servidores intermediários para o tráfego de ficheiros.
+Principais Funcionalidades:
+* Transferência P2P Direta: Arquitetura que permite a um dispositivo atuar como servidor ou cliente para enviar e receber ficheiros através da rede.
+* Segurança e Encriptação: Utilização de algoritmos criptográficos para proteger a integridade e a privacidade dos dados durante a transferência.
+* Gestão de Sessões: Sistema de geração de códigos únicos para facilitar a conexão rápida entre pares.
+* Interface Multi-Janela: Experiência de utilizador completa com janelas dedicadas para configuração, monitorização de transferências, atualizações e informações do sistema.
+* Sistema de Auto-Update: Mecanismo integrado para verificação e instalação automática de novas versões do software.
+Stack Tecnológica:
+* Linguagem Principal: Python, aproveitando a sua robustez para operações de rede e sistemas.
+* Interface Gráfica (GUI): Construída com CustomTkinter, proporcionando uma estética moderna e nativa para utilizadores Windows, com suporte para temas claro e escuro.
+* Rede (Networking): Utilização de Sockets para comunicação TCP/IP de baixa latência e alta eficiência.
+* Criptografia: Bibliotecas especializadas para encriptação de dados e segurança das comunicações.
+* Packaging: Utilização do PyInstaller (via build_exe.py) para converter os scripts em executáveis Windows independentes (.exe).
+Diferenciais Técnicos:
+* Design Modular: O código está organizado de forma lógica entre lógica de rede, utilitários de sistema e componentes de interface.
+* Pipeline de Release: Integração com GitHub Actions para automatização do processo de build e lançamento de novas versões.
+* Foco em UX: Inclui ecrãs de carregamento (splash screens), ícones personalizados e notificações de progresso para uma experiência profissional.
+
+Mint—
+O Mint é uma linguagem de programação personalizada, desenhada com foco em simplicidade e robustez. O projeto engloba todo o ciclo de vida de uma linguagem, desde a análise léxica (lexing) até à execução (interpretação), incluindo uma ferramenta de análise estática (linter) e suporte oficial para o Visual Studio Code através de uma extensão dedicada.
+Principais Funcionalidades:
+* Interpretador Completo: Execução de scripts .mint com suporte para lógica condicional, operações aritméticas e manipulação de variáveis.
+* Linter Integrado: Ferramenta de análise estática que identifica erros de sintaxe e inconsistências no código antes da execução.
+* Análise de Código Avançada: Implementação de um Lexer para tokenização e um Parser para geração de Árvores de Sintaxe Abstrata (AST).
+* Extensão para VS Code: Suporte nativo ao ambiente de desenvolvimento, incluindo syntax highlighting e ícones personalizados para ficheiros da linguagem.
+* Interface de Linha de Comando (CLI): Ferramenta prática para correr o interpretador ou o linter diretamente do terminal.
+Stack Tecnológica:
+* Linguagem Core: Desenvolvida inteiramente em Python, garantindo uma base de código modular e fácil de manter.
+* Arquitetura de Compilação: Utilização de padrões de design para Lexer, Parser e Interpretador baseados em nós de AST.
+* Tooling de Desenvolvimento: Extensão para VS Code construída com JSON (TextMate grammars) para definições de linguagem e temas.
+* Gestão de Erros: Sistema customizado de rastreio e reporte de erros de sintaxe e tempo de execução.
+Diferenciais Técnicos:
+* Ecossistema Completo: Ao contrário de simples parsers, o projeto entrega uma experiência de desenvolvimento ponta-a-ponta, com exemplos práticos (.mint) e ferramentas de produtividade.
+* Extensibilidade: A estrutura do parser permite a adição fácil de novas palavras-chave e funcionalidades lógicas à linguagem.
+* Foco em UX para Devs: A inclusão de uma extensão VSIX demonstra uma preocupação real com a experiência de quem escreve código na linguagem.
